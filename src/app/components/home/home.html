@@ -1,13 +1,190 @@
-<section id="home" class="home">
-    <h1>{{title()}}</h1>
+<section class="home" id="home">
 
-    <p>
-        {{description}}
-    </p>
-    {{message}}
-    <button (click)="sayHello()">Click to greet</button>
+  <section class="hero">
+    <div class="hero-content">
+      <span class="badge">Studio Learning</span>
 
-    <input type="text" [(ngModel)]="name" placeholder="Enter name">
-    <p>hello {{name}}</p>
-    <img [src]="imageUrl" alt="">
+      <h1>{{ title() }}</h1>
+      <p>{{ subtitle }}</p>
+
+      <button class="primary-button" (click)="startLearning()">
+        Start Learning
+      </button>
+    </div>
+  </section>
+
+  <section class="topics">
+    <div class="section-heading">
+      <span>LEARNING PATH</span>
+      <h2>Work Concepts</h2>
+      <p>Everything is implemented practically in this page.</p>
+    </div>
+
+    <div class="topic-grid">
+      @for (topic of topics; track topic; let i = $index) {
+        <div class="topic-card">
+          <div class="topic-number">{{ i + 1 }}</div>
+          <h3>{{ topic }}</h3>
+          <p>Practical implementation.</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <div class="section-heading">
+      <span>DATA BINDING</span>
+      <h2>Interactive Demo</h2>
+      <p>Type something</p>
+    </div>
+
+    <div class="demo-card">
+      <label for="name">Your Name</label>
+
+      <input
+        id="name"
+        type="text"
+        [(ngModel)]="name"
+        placeholder="Enter your name"
+      >
+
+      @if (name) {
+        <div class="preview">
+          <span>Hello</span>
+          <h3>{{ name }}</h3>
+        </div>
+      } @else {
+        <p class="empty-message">Start typing your name above.</p>
+      }
+
+      <div class="button-row">
+        <button
+          class="secondary-button"
+          [disabled]="!name"
+          (click)="toggleDetails()"
+        >
+          {{ showDetails ? 'Hide Details' : 'Show Details' }}
+        </button>
+
+        <button
+          class="clear-button"
+          [disabled]="!name"
+          (click)="clearName()"
+        >
+          Clear
+        </button>
+      </div>
+
+      @if (showDetails) {
+        <div class="details">
+          <h3>Angular concepts used here</h3>
+
+          <div class="detail-list">
+            <div>
+              <strong>Interpolation</strong>
+              <span>{{ name }}</span>
+            </div>
+
+            <div>
+              <strong>Two-way binding</strong>
+              <span>[(ngModel)]</span>
+            </div>
+
+            <div>
+              <strong>Property binding</strong>
+              <span>[disabled]</span>
+            </div>
+
+            <div>
+              <strong>Event binding</strong>
+              <span>(click)</span>
+            </div>
+
+            <div>
+              <strong>Control flow</strong>
+              <span>&#64;if</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="pipes-section">
+    <div class="section-heading">
+      <span>PIPE TRANSFORMATIONS</span>
+      <h2>Pipes in Action</h2>
+      <p>Pipes transform values when displaying them in the template.</p>
+    </div>
+
+    <div class="pipe-grid">
+      <div class="pipe-card">
+        <span class="pipe-label">uppercase</span>
+        <h3>{{ courseName | uppercase }}</h3>
+        <p>Original: {{ courseName }}</p>
+      </div>
+
+      <div class="pipe-card">
+        <span class="pipe-label">titlecase</span>
+        <h3>{{ courseName | titlecase }}</h3>
+        <p>Converts text into title format.</p>
+      </div>
+
+      <div class="pipe-card">
+        <span class="pipe-label">currency</span>
+        <h3>{{ price | currency:'INR' }}</h3>
+        <p>Original value: {{ price }}</p>
+      </div>
+
+      <div class="pipe-card">
+        <span class="pipe-label">date</span>
+        <h3>{{ today | date:'dd MMM yyyy' }}</h3>
+        <p>Current date formatted using DatePipe.</p>
+      </div>
+
+      <div class="pipe-card custom-pipe-card">
+        <span class="pipe-label">custom pipe: shorten</span>
+        <h3>{{ description | shorten:30 }}</h3>
+        <p>This text is transformed using our own custom pipe.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="directive-section">
+    <div class="section-heading">
+      <span>CUSTOM DIRECTIVE</span>
+      <h2>Hover Over the Cards</h2>
+      <p>The custom directive changes the element when you hover over it.</p>
+    </div>
+
+    <div class="directive-demo">
+      <div class="highlight-box" [appHighlight]="highlightColor">
+        <span class="directive-icon">✦</span>
+
+        <div>
+          <h3>Hover over me</h3>
+          <p>
+            This element uses the <strong>appHighlight</strong>
+            custom directive.
+          </p>
+        </div>
+      </div>
+
+      <div class="highlight-box" appHighlight="lightgreen">
+        <span class="directive-icon">✓</span>
+
+        <div>
+          <h3>Another example</h3>
+          <p>Same directive concept with a different highlight color.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-section">
+    <span>KEEP LEARNING</span>
+    <h2>Angular becomes easier when you build it.</h2>
+    <p>Next, make the contact section a real Angular form.</p>
+  </section>
+
 </section>

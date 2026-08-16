@@ -1,15 +1,90 @@
-<section id="contact" class="contact">
-  <h2>Contact Us</h2>
+<section class="contact" id="contact">
 
-  <form>
-    <input type="text" placeholder="Your name">
+  <div class="section-heading">
+    <span>ANGULAR FORMS</span>
+    <h2>Contact Form</h2>
+    <p>We will use this section to learn Angular forms practically.</p>
+  </div>
 
-    <input type="email" placeholder="Your email">
+  <div class="contact-card">
 
-    <textarea placeholder="Your message"></textarea>
+    @if (!submitted) {
+      <form #contactForm="ngForm" (ngSubmit)="submitForm()">
 
-    <button (click)="sendMessage()">
-      Send Message
-    </button>
-  </form>
+        <div class="field">
+          <label for="contact-name">Name</label>
+          <input
+            id="contact-name"
+            name="name"
+            type="text"
+            [(ngModel)]="name"
+            required
+            minlength="2"
+            #nameField="ngModel"
+            placeholder="Your name"
+          >
+
+          @if (nameField.invalid && nameField.touched) {
+            <small>Name must contain at least 2 characters.</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="contact-email">Email</label>
+          <input
+            id="contact-email"
+            name="email"
+            type="email"
+            [(ngModel)]="email"
+            required
+            email
+            #emailField="ngModel"
+            placeholder="you@example.com"
+          >
+
+          @if (emailField.invalid && emailField.touched) {
+            <small>Enter a valid email address.</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="contact-message">Message</label>
+          <textarea
+            id="contact-message"
+            name="message"
+            rows="5"
+            [(ngModel)]="message"
+            required
+            minlength="10"
+            #messageField="ngModel"
+            placeholder="Write your message"
+          ></textarea>
+
+          @if (messageField.invalid && messageField.touched) {
+            <small>Message must contain at least 10 characters.</small>
+          }
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="contactForm.invalid"
+        >
+          Send Message
+        </button>
+
+      </form>
+    } @else {
+      <div class="success">
+        <div class="success-icon">✓</div>
+        <h3>Message submitted</h3>
+        <p>Thanks {{ name }}. Your Angular form is working.</p>
+
+        <button type="button" (click)="resetForm()">
+          Send Another
+        </button>
+      </div>
+    }
+
+  </div>
+
 </section>

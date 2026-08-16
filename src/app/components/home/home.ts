@@ -1,20 +1,61 @@
 import { Component, input } from '@angular/core';
+import {
+  CurrencyPipe,
+  DatePipe,
+  TitleCasePipe,
+  UpperCasePipe
+} from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ShortenPipe } from '../../pipes/shorten.pipe';
+import { Highlight } from '../../directives/highlight';
+
 @Component({
   selector: 'app-home',
-  imports: [FormsModule],
+  imports: [
+    FormsModule,
+    CurrencyPipe,
+    DatePipe,
+    TitleCasePipe,
+    UpperCasePipe,
+    ShortenPipe,
+    Highlight
+  ],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrl: './home.css'
 })
 export class Home {
-    title = input.required<string>();
-    description = 'I am Web Developer';
-    imageUrl = "https://images.unsplash.com/photo-1622737133809-d95047b9e673?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    message = "";
-    sayHello(){
-      this.message = "Hy I am bishir"
-    }
-    name = ""
+  title = input.required<string>();
+  subtitle = 'Learn good work and make good experience';
+  name = '';
+  showDetails = false;
 
+  topics = [
+    'Video',
+    'Audio',
+    'Edit',
+    'Cut',
+    'Stand',
+    'Short'
+  ];
 
+  courseName = 'Studio practical learning';
+  price = 1499.99;
+  today = new Date();
+
+  description =
+    'Studio is a powerful framework for building modern work.';
+
+  highlightColor = 'lightblue';
+
+  startLearning() {
+    this.showDetails = true;
   }
+
+  toggleDetails() {
+    this.showDetails = !this.showDetails;
+  }
+
+  clearName() {
+    this.name = '';
+  }
+}

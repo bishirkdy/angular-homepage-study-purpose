@@ -1,23 +1,15 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
 import { Header } from './components/header/header';
-import { Footer } from './components/footer/footer';
-import { Contact } from './components/contact/contact';
 import { Home } from './components/home/home';
-
+import { Contact } from './components/contact/contact';
+import { Footer } from './components/footer/footer';
 
 @Component({
   selector: 'app-root',
   imports: [Header, Home, Contact, Footer],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('concepts');
-    pageTitle = 'Welcome to My New World';
-
-        onMessageSend (message : string){
-      console.log(message);
-      
-    }
+  pageTitle = 'My Studio New World';
 }

@@ -1,15 +1,26 @@
-import { Component, output } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './contact.html',
-  styleUrl: './contact.css',
+  styleUrl: './contact.css'
 })
 export class Contact {
-  messageSent = output<string>();
+  name = '';
+  email = '';
+  message = '';
+  submitted = false;
 
-  sendMessage (){
-    this.messageSent.emit("Message send")
+  submitForm() {
+    this.submitted = true;
+  }
+
+  resetForm() {
+    this.name = '';
+    this.email = '';
+    this.message = '';
+    this.submitted = false;
   }
 }
