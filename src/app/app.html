@@ -1,8 +1,8 @@
 <app-header></app-header>
 
 <main>
-  <app-home></app-home>
-  <app-contact></app-contact>
+  <app-home [title]="pageTitle"></app-home>
+  <app-contact (messageSent)="onMessageSend($event)"></app-contact>
 </main>
 
 <app-footer></app-footer>

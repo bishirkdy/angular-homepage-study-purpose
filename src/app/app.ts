@@ -14,4 +14,10 @@ import { Home } from './components/home/home';
 })
 export class App {
   protected readonly title = signal('concepts');
+    pageTitle = 'Welcome to My New World';
+
+        onMessageSend (message : string){
+      console.log(message);
+      
+    }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 
 @Component({
   selector: 'app-contact',
@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
   templateUrl: './contact.html',
   styleUrl: './contact.css',
 })
-export class Contact {}
+export class Contact {
+  messageSent = output<string>();
+
+  sendMessage (){
+    this.messageSent.emit("Message send")
+  }
+}
