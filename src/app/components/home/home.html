@@ -1,7 +1,13 @@
 <section id="home" class="home">
-  <h1>Angular Learning</h1>
+    <h1>{{title}}</h1>
 
-  <p>
-    A small project to learn Angular concepts step by step.
-  </p>
+    <p>
+        {{description}}
+    </p>
+    {{message}}
+    <button (click)="sayHello()">Click to greet</button>
+
+    <input type="text" [(ngModel)]="name" placeholder="Enter name">
+    <p>hello {{name}}</p>
+    <img [src]="imageUrl" alt="">
 </section>
